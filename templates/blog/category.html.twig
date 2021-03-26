@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Blog{% endblock %}
+{% block body %}
+<h4><center>Check your favourites here</center></h4>
+
+<div style="margin-bottom:100px;">
+{% for blog in blogs %}
+<div class="companies">
+    <div class="company-list">
+        <div class="row">
+            <div class="col-md-10 col-sm-10">
+                <div class="flexrow company-content" style="margin-left:20px;">
+                    <img class="card-img-top" src="{{ asset(blog.image) }}" alt="card image" style="width:100px; height:100px;">
+                    <div class="flexcolumn" style="padding-left:20px;">
+                        <h3><a style="text-decoration: none; padding-bottom:20px;" href="#">{{ blog.title }}</a>
+                        <span class="full-time" style="margin-left:10px;">{{ blog.category }}</span>
+                        </h3>
+                        <div class="flexrow" style="padding-top:10px;">
+                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</span>
+                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.shortdescription }}</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+    <h4 class="nofound">No Blog Found.</h4>
+{% endfor %}
+</div>
+{% endblock %}
