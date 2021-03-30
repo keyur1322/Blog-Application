@@ -2,33 +2,30 @@
 
 {% block title %}New Blog{% endblock %}
 {% block body %}
-<h4><center>Check your favourites here</center></h4>
 
-<div style="margin-bottom:100px;">
-{% for blog in blogs %}
-<div class="companies">
-    <div class="company-list">
+ <!-- Categorised blog -->
+    <section class="latest-posts"> 
+      <div class="container">
+        <header> 
+          <h2>Latest from the blog</h2>
+          <p class="text-big">Blogs are informal articles written for the purpose of showing thought leadership and expertise on a topic.</p>
+        </header>
         <div class="row">
-            <div class="col-md-10 col-sm-10">
-                <div class="flexrow company-content" style="margin-left:20px;">
-                    <img class="card-img-top" src="{{ asset(blog.image) }}" alt="card image" style="width:100px; height:100px;">
-                    <div class="flexcolumn" style="padding-left:20px;">
-                        <h3><a style="text-decoration: none; padding-bottom:20px;" href="#">{{ blog.title }}</a>
-                        <span class="full-time" style="margin-left:10px;">{{ blog.category }}</span>
-                        </h3>
-                        <div class="flexrow" style="padding-top:10px;">
-                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</span>
-                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.shortdescription }}</span></p>
-                        </div>
-                    </div>
-                </div>
+        {% for blog in blogs %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="post.html"><img src="{{ asset(blog.image) }}" alt="components-missing" class="img-fluid"></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between mt-2">
+                <p style="color:gray;">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
+                <p><strong>{{ blog.category }}</strong></p>
+              </div><a href="post.html">
+                <h3 class="h4">{{ blog.title }}</h3></a>
+              <p class="text-muted">{{ blog.shortdescription }}</p>
             </div>
+          </div>
+        {% else %}
+            <h4 class="nofound">No Blog Found.</h4>
+        {% endfor %}
         </div>
-    </div>
-</div>
-
-{% else %}
-    <h4 class="nofound">No Blog Found.</h4>
-{% endfor %}
-</div>
+    </section>
 {% endblock %}

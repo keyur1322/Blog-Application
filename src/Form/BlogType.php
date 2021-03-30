@@ -6,8 +6,10 @@ use App\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class BlogType extends AbstractType
 {
@@ -15,9 +17,7 @@ class BlogType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('short_description')
-            ->add('long_description')
-            ->add('date')
+            ->add('image', FileType::class)
             ->add('category', ChoiceType::class, [
                 'choices' => [
                   
@@ -26,15 +26,16 @@ class BlogType extends AbstractType
                         'Medical' => 'medical',
                         'Food' => 'food',
                     ]])
-            ->add('image', FileType::class)
-          
+            ->add('ShortDescription')
+            ->add('LongDescription')
+           
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Blog::class ,
+            'data_class' => Blog::class,
         ]);
     }
 }

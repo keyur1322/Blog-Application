@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/blog")
  */
@@ -27,6 +26,7 @@ class BlogController extends AbstractController
     }
 
 
+
     /**
      * @Route("/blog_category/{variable}", name="blog_category", methods={"GET"})
      */
@@ -38,13 +38,15 @@ class BlogController extends AbstractController
     }
 
 
-    
+
     /**
-     * @Route("/blog_filter_date", name="blog_filter_date", methods={"GET"})
+     * @Route("/blog_filter_date/{month}", name="blog_filter_date", methods={"GET"})
      */
-    public function filter_date(BlogRepository $blogRepository): Response
+    public function filter_date($month, BlogRepository $blogRepository): Response
     {
-        return $this->render('blog/date.html.twig');
+        return $this->render('blog/date.html.twig', [
+            'month' => $month
+        ]);
     }
 
 

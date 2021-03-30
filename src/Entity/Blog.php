@@ -23,11 +23,6 @@ class Blog
     private $title;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
-
-    /**
      * @ORM\Column(type="string", length=200)
      */
     private $image;
@@ -38,14 +33,24 @@ class Blog
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=300)
      */
     private $ShortDescription;
 
     /**
-     * @ORM\Column(type="string", length=250)
+     * @ORM\Column(type="string", length=400)
      */
     private $LongDescription;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $publishedAt;
+
+    public function __construct()
+    {
+        $this->publishedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -64,24 +69,13 @@ class Blog
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
     public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage( $image)
+    public function setImage($image)
     {
         $this->image = $image;
 
@@ -120,6 +114,18 @@ class Blog
     public function setLongDescription(string $LongDescription): self
     {
         $this->LongDescription = $LongDescription;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeInterface
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }

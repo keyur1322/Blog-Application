@@ -3,8 +3,29 @@
 {% block title %}Blog index{% endblock %}
 
 {% block body %}
-<h4><center>Check your favourites here</center></h4>
+    <section class="pt-5">
+      <div class="container">
+        <h1>Featured Blog</h1>
+        <p class="mb-0">The world's 50 most powerful blogs. From Prince Harry in Afghanistan to Tom Cruise ranting about Scientology and footage from the Burmese.</p>
+      </div>
+      <div class="destinations-slider owl-carousel owl-theme nav-center-custom owl-padding">
+        {% for blog in blogs %}
+            <a class="destination d-flex align-items-end bg-center bg-cover" href="#" style="background: url('{{ asset(blog.image) }}');">
+            <div class="destination-inner w-100 text-center text-white index-forward has-transition">
+                <p class="small text-uppercase mb-0">{{ blog.category }}</p>
+                <p class="small text-uppercase mb-0">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
+                <h2 class="h3 mb-4">{{ blog.title }}</h2>
+                <div class="btn btn-primary btn-block destination-btn text-white">Discover</div>
+            </div>
+            </a>
+        {% else %}
+            <h4 class="nofound">No Blog Found.</h4>
+        {% endfor %}
 
+        </a>
+      </div>
+    </section>
+{# 
 <div style="margin-bottom:100px;">
 {% for blog in blogs %}
 <div class="companies">
@@ -31,5 +52,6 @@
 {% else %}
     <h4 class="nofound">No Blog Found.</h4>
 {% endfor %}
-</div>
+</div> #}
 {% endblock %}
+

@@ -3,134 +3,269 @@
   <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-   
+  
     {% block stylesheets %}
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}"/>
+        
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{{ asset('vendor/owl.carousel2/assets/owl.carousel.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('vendor/owl.carousel2/assets/owl.theme.default.min.css') }}"/>
+    <!-- Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}"/>
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
+    <!-- Favicon-->
+    {# <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}"> #}
+      
+    <!-- Month picker -->
+    {# <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet"> #}
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
-
-    <!-- Font Awesome JS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-   
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     {% endblock %}
+
+
   </head>
   <body>
-   <!-- Sidebar  -->
-     <div class="wrapper">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Blog World</h3>
+  <!-- Header-->
+    <header class="header">
+      <!-- Top bar -->
+      <div class="py-2 bg-dark text-white">
+        <div class="container py-1">
+          <div class="row align-items-center">
+            <div class="col-lg-4">
+              <ul class="list-inline mb-0 text-small">
+                <li class="list-inline-item"><a class="reset-anchor" href="#">About us</a></li>
+                <li class="list-inline-item">|</li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#">Sitemap</a></li>
+              </ul>
             </div>
-                <ul class="list-unstyled components">
-                <p>WELCOME USER</p>
-                    <li>
-                        <a href="{{ path('blog_index') }}">Home</a>
-                    </li>
-                <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="{{ path('blog_category', {'variable': 'technology'}) }}">Technology</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('blog_category', {'variable': 'science'}) }}">Science</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('blog_category', {'variable': 'medical'}) }}">Medical</a>
-                        </li>
-                        <li> 
-                            <a href="{{ path('blog_category', {'variable': 'food'}) }}">Food</a>
-                        </li>
-                    </ul>
-                </li>
-               
-                <li class="">
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Filters</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="{{ path('blog_filter_date') }}">Date</a>
-                        </li>
-                        <li>
-                            <a href="#">Filter 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Filter 3</a>
-                        </li>
-                    </ul>
-                </li>
-                </ul>
-                
-              {# <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
-                </li>
-              </ul> #}
-          </nav>
-          <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn btn-info">
-                  <i class="fas fa-align-left"></i>
-                    <span></span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <i class="fas fa-align-justify"></i>
-                </button>
-                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                          <ul class="nav navbar-nav ml-auto">
-                            {% if app.user %}
-                            <li><a class="nav-link" href="{{ path('blog_index') }}">View List</a></li>
-                            <li><a class="nav-link" href="{{ path('app_logout') }}">Logout</a></li>
-                            {% else %}
-                            <li><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
-                            <li>
-                            <a class="nav-link" href="{{ path('registration') }}">Register</a>
-                            </li>
-                            {% endif %}
-                          </ul>
-                      </div>
-                  </div>
-            </nav>
-            {% block body %}{% endblock %} 
-            <div class="footer">
-                <footer class="bg-light text-center text-lg-start">
-                    <!-- Copyright -->
-                    <div class="text-left p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                        © 2021 Copyright:
-                        <a class="text-dark" href="#">www.blogworld.com</a>
-                    </div>
-                    <!-- Copyright -->
-                </footer>
+            <div class="col-lg-4 d-none d-lg-block text-center">
+              <ul class="list-inline mb-0 small">
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-linkedin"></i></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-youtube"></i></a></li>
+                <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-vimeo-v"></i></a></li>
+              </ul>
             </div>
+            <div class="col-lg-4 d-none d-lg-block text-right">
+                {% if app.user %}
+                  <a class="" href="{{ path('app_logout') }}" style="color:white; text-decoration: none;">Logout</a>
+                {% else %}
+                  <a class="" href="{{ path('app_login') }}" style="color:white; text-decoration: none; margin-left:10px;">Login</a>
+                  <a class="" href="{{ path('registration') }}" style="color:white; text-decoration: none; margin-left:10px;">Register</a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
       </div>
-   
-    {% block javascripts %}
-    
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
-     
+      <!-- Navbar 1 -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-white py-4">
+        <div class="container text-center"><a class="navbar-brand mx-auto" href="#"><img class="mb-2" src="{{ asset('img/logo.svg') }}" alt="logo missing" width="140">
+            <p class="text-small text-uppercase text-gray mb-0">Your next level blog guide</p></a></div>
+      </nav>
+      <!-- Navbar 2 -->
+      <nav class="navbar navbar-expand-lg navbar-light border-gray py-2 bg-light">
+        <div class="container">
+          <button class="navbar-toggler navbar-toggler-right mx-auto border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item px-1">
+                <!-- Link--><a class="nav-link active" href="{{ path('blog_index')}}">Home</a>
+              </li>
+              <li class="nav-item px-1 dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by Date</a>
+                <div class="dropdown-menu text-center text-lg-left" aria-labelledby="navbarDropdownMenuLink">
   
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '01'}) }}">January</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '02'}) }}">February</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '03'}) }}">March</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '04'}) }}">April</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '05'}) }}">May</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '06'}) }}">June</a>
+
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '07'}) }}">July</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '08'}) }}">August</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '09'}) }}">September</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '10'}) }}">October</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '11'}) }}">November</a>
+                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '12'}) }}">December</a>
+                         
+                </div>
+              </li>
+              <li class="nav-item px-1 dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                <div class="dropdown-menu text-center text-lg-left" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'technology'}) }}">Technology</a>
+                  <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'science'}) }}">Science</a>
+                  <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'medical'}) }}">Medical</a>
+                  <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'food'}) }}">Food</a>
+                </div>
+              </li>
+              {% if app.user %}
+               <li class="nav-item px-1 dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
+                  <div class="dropdown-menu text-center text-lg-left" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('blog_new') }}">Add Blog</a>
+                    <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'science'}) }}">See all Blogs</a>
+                    <a class="dropdown-item" href="{{ path('blog_category', {'variable': 'medical'}) }}">See all Comments</a>
+                  </div>
+              </li>
+              {% else %}
+                        
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+ 
+   
+    {% block body %}{% endblock %} 
+
+
+    <!-- Subscribe section -->
+    <section class="py-5">
+      <div class="container py-4">
+        <div class="row align-items-center">
+          <div class="col-lg-6 position-relative py-4">
+            <img class="subscribe-img" src="{{ asset('img/subscribe-img-3.jpg') }}" alt="">
+            <img class="subscribe-img" src="{{ asset('img/subscribe-img-1.jpg') }}" alt="">
+          </div>
+          <div class="col-lg-6">
+            <h2>Best money saving - Blog tips</h2>
+            <p class="text-muted mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos quidem facere aliquam, delectus, incidunt ipsum fugit deserunt ducimus quibusdam consequuntur quos numquam ipsa suscipit animi dolore. Est beatae inventore voluptas.</p>
+            <form action="#">
+              <div class="row">
+                <div class="form-group col-lg-8">
+                  <input class="form-control" type="email" name="email" placeholder="Enter your email address">
+                </div>
+                <div class="form-group col-lg-4">
+                  <button class="btn btn-dark btn-block" type="submit">Subscribe</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Top categories section -->
+    <section class="py-5 bg-light">
+      <div class="container py-4">
+        <header class="mb-5 text-center">
+          <h2>Top categories</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+        </header>
+        <div class="row text-center">
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#food-1"> </use>
+              </svg>
+              <h3 class="h5">Restaurants</h3>
+              <p class="text-muted text-small">3 Destinations</p></a></div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#paper-bag-1"> </use>
+              </svg>
+              <h3 class="h5 mb-1">Markets</h3>
+              <p class="text-muted text-small">7 Destinations</p></a></div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#special-price-1"> </use>
+              </svg>
+              <h3 class="h5 mb-1">Low budget</h3>
+              <p class="text-muted text-small">2 Destinations</p></a></div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#movie-camera-1"> </use>
+              </svg>
+              <h3 class="h5 mb-1">Cinemas</h3>
+              <p class="text-muted text-small">4 Destinations</p></a></div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#beach-1"> </use>
+              </svg>
+              <h3 class="h5 mb-1">Beaches</h3>
+              <p class="text-muted text-small">5 Destinations</p></a></div>
+          <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mb-lg-0"><a class="reset-anchor d-block" href="listing.html">
+              <svg class="svg-icon mb-3 svg-icon-big svg-icon-light text-primary">
+                <use xlink:href="#camping-1"> </use>
+              </svg>
+              <h3 class="h5 mb-1">Camping</h3>
+              <p class="text-muted text-small">6 Destinations</p></a></div>
+        </div>
+      </div>
+    </section>
+   
+    <!-- Footer -->
+    <footer class="bg-dark py-4">
+      <div class="container">
+        <div class="row py-2">
+          <div class="col-lg-4 text-center text-lg-left mb-2 mb-lg-0">
+            <p class="small text-muted text-uppercase mb-0">&copy; copyright 2021 - all rights reserved</p>
+          </div>
+          <div class="col-lg-4 text-center mb-2 mb-lg-0">
+            <ul class="list-inline text-white small mb-0">
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-facebook-f"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-instagram"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-youtube"></i></a></li>
+              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fab fa-vimeo-v"></i></a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 text-center text-lg-right">
+            <p class="small text-muted text-uppercase mb-0">Keyur Panchal  <a href="#">www.blogword.com</a>. </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+            
+    {% block javascripts %}
+    <script  src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script  src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script  src="{{ asset('vendor/owl.carousel2/owl.carousel.min.js') }}"></script>
+    <script  src="{{ asset('js/front.js') }}"></script>
+    <script>
+      function injectSvgSprite(path) {
+      
+          var ajax = new XMLHttpRequest();
+          ajax.open("GET", path, true);
+          ajax.send();
+          ajax.onload = function(e) {
+          var div = document.createElement("div");
+          div.className = 'd-none';
+          div.innerHTML = ajax.responseText;
+          document.body.insertBefore(div, document.body.childNodes[0]);
+          }
+      }
+      injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
+      
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+    </script>
+
+
+
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
+    #}
+     
     {% endblock %}
+  
   </body>
 </html>

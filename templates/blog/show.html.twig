@@ -16,10 +16,6 @@
                 <td>{{ blog.title }}</td>
             </tr>
             <tr>
-                <th>Date</th>
-                <td>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
                 <th>Image</th>
                 <td>{{ blog.image }}</td>
             </tr>
@@ -34,6 +30,10 @@
             <tr>
                 <th>LongDescription</th>
                 <td>{{ blog.LongDescription }}</td>
+            </tr>
+            <tr>
+                <th>PublishedAt</th>
+                <td>{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
