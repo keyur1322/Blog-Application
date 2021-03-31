@@ -10,7 +10,7 @@
       </div>
       <div class="destinations-slider owl-carousel owl-theme nav-center-custom owl-padding">
         {% for blog in blogs %}
-            <a class="destination d-flex align-items-end bg-center bg-cover" href="#" style="background: url('{{ asset(blog.image) }}');">
+            <a class="destination d-flex align-items-end bg-center bg-cover" href="{{ path('blog_details', {'blogid': blog.id}) }}" style="background: url('{{ asset(blog.image) }}');">
             <div class="destination-inner w-100 text-center text-white index-forward has-transition">
                 <p class="small text-uppercase mb-0">{{ blog.category }}</p>
                 <p class="small text-uppercase mb-0">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
@@ -21,37 +21,8 @@
         {% else %}
             <h4 class="nofound">No Blog Found.</h4>
         {% endfor %}
-
         </a>
       </div>
     </section>
-{# 
-<div style="margin-bottom:100px;">
-{% for blog in blogs %}
-<div class="companies">
-    <div class="company-list">
-        <div class="row">
-            <div class="col-md-10 col-sm-10">
-                <div class="flexrow company-content" style="margin-left:20px;">
-                    <img class="card-img-top" src="{{ asset(blog.image) }}" alt="card image" style="width:100px; height:100px;">
-                    <div class="flexcolumn" style="padding-left:20px;">
-                        <h3><a style="text-decoration: none; padding-bottom:20px;" href="#">{{ blog.title }}</a>
-                        <span class="full-time" style="margin-left:10px;">{{ blog.category }}</span>
-                        </h3>
-                        <div class="flexrow" style="padding-top:10px;">
-                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.date ? blog.date|date('Y-m-d') : '' }}</span>
-                        <p><span class="company-name"><i style="margin-right:10px;" class="fa fa-briefcase"></i>{{ blog.shortdescription }}</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% else %}
-    <h4 class="nofound">No Blog Found.</h4>
-{% endfor %}
-</div> #}
 {% endblock %}
 

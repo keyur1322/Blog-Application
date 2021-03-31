@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,8 +26,6 @@ class BlogController extends AbstractController
         ]);
     }
 
-
-
     /**
      * @Route("/blog_category/{variable}", name="blog_category", methods={"GET"})
      */
@@ -40,12 +39,40 @@ class BlogController extends AbstractController
 
 
     /**
+     * @Route("/blog_details/{blogid}", name="blog_details", methods={"GET"})
+     */
+    public function blog_details($blogid, BlogRepository $blogRepository, CommentsRepository $commentrepositorty): Response
+    {
+
+        return $this->render('blog/blogdetails.html.twig', [
+            'blogs' => $blogRepository->findBy([ 'id' => $blogid ]),
+            'comments' => $commentrepositorty->findBy([ 'blog' => $blogid ])
+        ]);
+    }
+
+
+
+    /**
      * @Route("/blog_filter_date/{month}", name="blog_filter_date", methods={"GET"})
      */
     public function filter_date($month, BlogRepository $blogRepository): Response
     {
         return $this->render('blog/date.html.twig', [
             'month' => $month
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/all_user_blog", name="all_user_blog", methods={"GET"})
+     */
+    public function all_user_blog(BlogRepository $blogRepository): Response
+    {
+        $user = $this-> getUser();
+      
+        return $this->render('blog/allblog.html.twig', [
+            'blogs' => $blogRepository->findBy(['user' => $user ]),
         ]);
     }
 
@@ -67,11 +94,13 @@ class BlogController extends AbstractController
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_image_directory'), $filename);
             $blog->setImage($this->getParameter('upload_image_directory').'/'.$filename);
-
+            $blog->setUser($this->getUser());
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($blog);
             $entityManager->flush();
+
+            $this->addFlash('success' , 'Blog is created. Enjoy your blogging !');
 
             return $this->redirectToRoute('blog_index');
         }

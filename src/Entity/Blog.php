@@ -33,12 +33,12 @@ class Blog
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=300)
+     * @ORM\Column(type="string", length=500)
      */
     private $ShortDescription;
 
     /**
-     * @ORM\Column(type="string", length=400)
+     * @ORM\Column(type="string", length=700)
      */
     private $LongDescription;
 
@@ -46,6 +46,12 @@ class Blog
      * @ORM\Column(type="datetime")
      */
     private $publishedAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function __construct()
     {
@@ -126,6 +132,18 @@ class Blog
     public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
         $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

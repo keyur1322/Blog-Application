@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+{% for blog in blogs %}
+   <section class="py-5">
+      <div class="container text-center">
+        <p class="h6 mb-0 text-uppercase text-primary">{{ blog.category }}</p>
+        <h1>{{ blog.title }}</h1>
+        <p class="mb-3">{{ blog.ShortDescription }}</p>
+        <ul class="list-inline small text-uppercase mb-0">
+          <li class="list-inline-item mr-0 text-muted align-middle">By </li>
+          <li class="list-inline-item align-middle mr-0"><a class="font-weight-bold reset-anchor" href="#">{{ blog.user.name }}</a></li>
+          <li class="list-inline-item text-muted align-middle mr-0">|</li>
+          <li class="list-inline-item text-muted align-middle mr-0">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</li>
+          {# <li class="list-inline-item text-muted align-middle mr-0">|</li> #}
+          {# <li class="list-inline-item text-muted align-middle">20 Comments</li> #}
+        </ul>
+      </div><img class="rounded mx-auto d-block w-90 py-5" src="{{ asset(blog.image) }}" alt="">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mb-5 mb-lg-0">
+           
+            <h2>Short Description</h2>
+            <p class="text-muted mb-4">{{ blog.ShortDescription }}</p>
+            
+            
+            <h3 class="mb-4">Long Description</h3>
+            <p>{{ blog.LongDescription }}</p>
+           
+            <h3 class="h4 mb-4">Share this post</h3>
+            <ul class="list-inline mb-5">
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share facebook" href="#"><i class="fab fa-facebook-f mr-2"></i>Share</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share twitter" href="#"><i class="fab fa-twitter mr-2"></i>Tweet</a></li>
+              <li class="list-inline-item mr-1 mb-3"><a class="social-link-share instagram" href="#"><i class="fab fa-instagram mr-2"></i>Share</a></li>
+            </ul>
+            {% if app.user %}
+            <h3 class="h4 mb-4">Leave a comment</h3>
+            <form class="mb-5" action="{{ path('comments_new', {'id': blog.id} ) }}" method="POST">
+              <div class="row">
+                <div class="form-group col-lg-12">
+                  <textarea class="form-control" name="message" rows="5" placeholder="Leave your message" required></textarea>
+                </div>
+                <div class="form-group col-lg-12">
+                  <button class="btn btn-dark" type="submit">Submit</button>
+                </div>
+              </div>
+            </form>
+            <h3 class="h4 mb-4 d-flex align-items-center"><span>Comments</span></h3>
+
+                {% for comment in comments %}
+                <ul class="list-unstyled comments">
+                  <li>
+                    <div class="d-flex mb-4">
+                      <div class="pl-2">
+                        <p class="small mb-0 text-primary">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
+                        <h5>{{ comment.user.name }}</h5>
+                        <p class="text-muted text-small mb-2">{{ comment.comment }}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                {% else %}
+                  <h4 class="nofound">No comments Found.</h4>
+                {% endfor %}
+
+            {% else %}
+                <div style="display:flex; flex-direction:row;">
+                  <p class="pt-2 mr-4" style="font-size:20px;"><strong>Login for share your comments</strong></p>
+                  <a href="{{ path('app_login') }}" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i>Login</a>
+                </div>    
+                <h3 class="h4 mb-4 d-flex align-items-center" style="margin-top:50px;"><span>Comments</span></h3>    
+          
+                {% for comment in comments %}
+                <ul class="list-unstyled comments">
+                  <li>
+                    <div class="d-flex mb-4">
+                      <div class="pl-2">
+                        <p class="small mb-0 text-primary">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
+                        <h5>{{ comment.user.name }}</h5>
+                        <p class="text-muted text-small mb-2">{{ comment.comment }}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                {% else %}
+                  <h4 class="nofound">No comments Found.</h4>
+                {% endfor %}
+
+
+            {% endif %}
+          </div>
+       
+        </div>
+      </div>
+    </section>
+{% else %}
+    <h4 class="nofound">No Blog details Found.</h4>
+{% endfor %}
+
+{% endblock %}

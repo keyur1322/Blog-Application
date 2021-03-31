@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+  {% for comment in comments %}
+                <ul class="list-unstyled comments">
+                  <li>
+                    <div class="d-flex mb-4">
+                      <div class="pl-2">
+                        <p class="small mb-0 text-primary">{{ comment.publishedAt ? comment.publishedAt|date('Y-m-d') : '' }}</p>
+                        <h5>{{ comment.blog.title }}</h5>
+                        <p class="text-muted text-small mb-2">{{ comment.comment }}</p>
+                        <p class="text-muted text-small mb-2">{{ comment.blog.category }}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                {% else %}
+                  <h4 class="nofound">No comments Found.</h4>
+                {% endfor %}
+{% endblock %}

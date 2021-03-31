@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
 class BlogType extends AbstractType
@@ -26,8 +27,8 @@ class BlogType extends AbstractType
                         'Medical' => 'medical',
                         'Food' => 'food',
                     ]])
-            ->add('ShortDescription')
-            ->add('LongDescription')
+            ->add('ShortDescription', TextareaType::class)
+            ->add('LongDescription' , TextareaType::class)
            
         ;
     }
