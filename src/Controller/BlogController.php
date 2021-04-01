@@ -53,12 +53,15 @@ class BlogController extends AbstractController
 
 
     /**
-     * @Route("/blog_filter_date/{month}", name="blog_filter_date", methods={"GET"})
+     * @Route("/blog_filter_date", name="blog_filter_date", methods={"GET","POST"})
      */
-    public function filter_date($month, BlogRepository $blogRepository): Response
+    public function filter_date(BlogRepository $blogRepository , Request $request): Response
     {
-        return $this->render('blog/date.html.twig', [
-            'month' => $month
+        $date1 = $request -> get('datepicker');
+        
+        return $this->render('blog/date.html.twig' , [
+            // 'blogs' => $blogRepository->findBy(['publishedAt' => $date1 ]),
+            'date1' => $date1
         ]);
     }
 

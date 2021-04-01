@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 31, 2021 at 01:23 PM
+-- Generation Time: Apr 01, 2021 at 01:24 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `published_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C0155143A76ED395` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `blog`
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   PRIMARY KEY (`id`),
   KEY `IDX_5F9E962AA76ED395` (`user_id`),
   KEY `IDX_5F9E962ADAE07E97` (`blog_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `comments`
@@ -77,9 +77,10 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 INSERT INTO `comments` (`id`, `user_id`, `blog_id`, `comment`, `published_at`) VALUES
 (3, 4, 8, 'Hii, i read this blog and it\'s too good and informative and i like to thank to the author for such a thoughtful and excellent blog.', '2021-03-31 10:48:52'),
-(4, 4, 3, 'Hello, Admin...\r\nI am very interested to learn about new technology and new trends.\r\nIt seems to helpful to me for introduce with new technology.', '2021-03-31 11:17:32'),
+(4, 3, 3, 'Hello, Admin...\r\nI am very interested to learn about new technology and new trends.\r\nIt seems to helpful to me for introduce with new technology.', '2021-03-31 11:17:32'),
 (5, 5, 3, 'Hey,\r\nAre you there ?\r\nPlease, contact me him for create your own blog.\r\n', '2021-03-31 12:42:01'),
-(7, 5, 7, 'Exactly Dear Author, Technology is the most important part of our life.', '2021-03-31 13:03:00');
+(7, 5, 7, 'Exactly Dear Author, Technology is the most important part of our life.', '2021-03-31 13:03:00'),
+(8, 3, 6, 'Hello, I am admin. Thanks for your support.', '2021-04-01 08:06:48');
 
 -- --------------------------------------------------------
 

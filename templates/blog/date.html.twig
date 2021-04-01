@@ -2,7 +2,39 @@
 
 {% block title %}New Blog{% endblock %}
 {% block body %}
+<form action="{{ path('blog_filter_date') }}" method="POST">
+    <div style="padding:30px;">
+        <input type="text" autocomplete="off" class="form-control" name="datepicker" id="datepicker" placeholder="Select month and year" style="max-width:300px; margin-bottom:30px;" required />
+        <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i>Search</button>
+    </div>
+</form> 
 
-<h3>{{ month }}</h3>
+<h2>{{ date1 }}</h2>
+
+ <!-- Categorised blog -->
+    {# <section class="latest-posts"> 
+      <div class="container">
+        <header> 
+          <h2>Latest from the blog</h2>
+          <p class="text-big">Blogs are informal articles written for the purpose of showing thought leadership and expertise on a topic.</p>
+        </header>
+        <div class="row">
+        {% for blog in blogs %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="{{ path('blog_details', {'blogid': blog.id}) }}"><img src="{{ asset(blog.image) }}" alt="components-missing" class="img-fluid"></a></div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between mt-2">
+                <p style="color:gray;">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
+                <p><strong>{{ blog.category }}</strong></p>
+              </div><a href="{{ path('blog_details', {'blogid': blog.id}) }}">
+                <h3 class="h4">{{ blog.title }}</h3></a>
+              <p class="text-muted">{{ blog.shortdescription }}</p>
+            </div>
+          </div>
+        {% else %}
+            <h4 class="nofound">No Blog Found.</h4>
+        {% endfor %}
+        </div>
+    </section> #}
 
 {% endblock %}

@@ -56,6 +56,8 @@ class CommentsController extends AbstractController
         $entityManager->persist($comment);
         $entityManager->flush();
 
+        $this->addFlash('success' , 'Comment is added successfully. Check more !');
+
         return $this->redirectToRoute('blog_index');     
     }
 

@@ -25,7 +25,9 @@
     {# <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}"> #}
       
     <!-- Month picker -->
-    {# <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet"> #}
+    {# <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet"> #}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+
 
     <!-- Date Picker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -82,26 +84,10 @@
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item px-1">
-                <!-- Link--><a class="nav-link active" href="{{ path('blog_index')}}">Home</a>
+                <!-- Link-->
+              <a class="nav-link active" href="{{ path('blog_index')}}">Home</a>
               </li>
-              <li class="nav-item px-1 dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by Date</a>
-                <div class="dropdown-menu text-center text-lg-left" aria-labelledby="navbarDropdownMenuLink">
-  
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '01'}) }}">January</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '02'}) }}">February</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '03'}) }}">March</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '04'}) }}">April</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '05'}) }}">May</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '06'}) }}">June</a>
-
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '07'}) }}">July</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '08'}) }}">August</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '09'}) }}">September</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '10'}) }}">October</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '11'}) }}">November</a>
-                      <a class="dropdown-item" href="{{ path('blog_filter_date', {'month': '12'}) }}">December</a>
-                         
-                </div>
+              <a class="nav-link" href="{{ path('blog_filter_date')}}">Filter by Date</a>
               </li>
               <li class="nav-item px-1 dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                 <div class="dropdown-menu text-center text-lg-left" aria-labelledby="navbarDropdownMenuLink">
@@ -244,6 +230,12 @@
     <script  src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script  src="{{ asset('vendor/owl.carousel2/owl.carousel.min.js') }}"></script>
     <script  src="{{ asset('js/front.js') }}"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+    
+    <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
+   
     <script>
       function injectSvgSprite(path) {
       
@@ -260,12 +252,7 @@
       injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg'); 
       
     </script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-      $( function() {
-        $( "#datepicker" ).datepicker();
-      } );
-    </script>
+   
     <script>
       setTimeout(function() {
         $('#successMessage').delay(3000).slideUp(300);
@@ -273,14 +260,9 @@
 
     </script>
 
-
-
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    
-    {# <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/datepicker.js') }}"></script>
-    #}
+ 
      
     {% endblock %}
   
