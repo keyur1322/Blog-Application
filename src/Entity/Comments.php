@@ -34,12 +34,10 @@ class Comments
      */
     private $blog;
 
-
     /**
      * @ORM\Column(type="datetime")
      */
     private $publishedAt;
-
 
     public function __construct()
     {
@@ -98,5 +96,4 @@ class Comments
 
         return $this;
     }
-
 }

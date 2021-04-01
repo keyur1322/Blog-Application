@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Entity;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
@@ -38,8 +38,6 @@ class User implements UserInterface
      */
     private $name;
 
-  
-
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +51,7 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -74,12 +73,14 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
+
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
         return $this;
     }
 
@@ -94,6 +95,7 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -122,8 +124,7 @@ class User implements UserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
-
-    
 }

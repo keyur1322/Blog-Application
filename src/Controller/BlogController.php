@@ -32,54 +32,45 @@ class BlogController extends AbstractController
     public function category($variable, BlogRepository $blogRepository): Response
     {
         return $this->render('blog/category.html.twig', [
-            'blogs' => $blogRepository->findBy([ 'category' => $variable ]),
+            'blogs' => $blogRepository->findBy(['category' => $variable]),
         ]);
     }
-
-
 
     /**
      * @Route("/blog_details/{blogid}", name="blog_details", methods={"GET"})
      */
     public function blog_details($blogid, BlogRepository $blogRepository, CommentsRepository $commentrepositorty): Response
     {
-
         return $this->render('blog/blogdetails.html.twig', [
-            'blogs' => $blogRepository->findBy([ 'id' => $blogid ]),
-            'comments' => $commentrepositorty->findBy([ 'blog' => $blogid ])
+            'blogs' => $blogRepository->findBy(['id' => $blogid]),
+            'comments' => $commentrepositorty->findBy(['blog' => $blogid]),
         ]);
     }
-
-
 
     /**
      * @Route("/blog_filter_date", name="blog_filter_date", methods={"GET","POST"})
      */
-    public function filter_date(BlogRepository $blogRepository , Request $request): Response
+    public function filter_date(BlogRepository $blogRepository, Request $request): Response
     {
-        $date1 = $request -> get('datepicker');
-        
-        return $this->render('blog/date.html.twig' , [
+        $date1 = $request->get('datepicker');
+
+        return $this->render('blog/date.html.twig', [
             // 'blogs' => $blogRepository->findBy(['publishedAt' => $date1 ]),
-            'date1' => $date1
+            'date1' => $date1,
         ]);
     }
-
-
 
     /**
      * @Route("/all_user_blog", name="all_user_blog", methods={"GET"})
      */
     public function all_user_blog(BlogRepository $blogRepository): Response
     {
-        $user = $this-> getUser();
-      
+        $user = $this->getUser();
+
         return $this->render('blog/allblog.html.twig', [
-            'blogs' => $blogRepository->findBy(['user' => $user ]),
+            'blogs' => $blogRepository->findBy(['user' => $user]),
         ]);
     }
-
-
 
     /**
      * @Route("/new", name="blog_new", methods={"GET","POST"})
@@ -91,19 +82,18 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $blog->getImage();
 
-            $file = $blog ->getImage();
-        
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_image_directory'), $filename);
             $blog->setImage($this->getParameter('upload_image_directory').'/'.$filename);
             $blog->setUser($this->getUser());
-            
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($blog);
             $entityManager->flush();
 
-            $this->addFlash('success' , 'Blog is created. Enjoy your blogging !');
+            $this->addFlash('success', 'Blog is created. Enjoy your blogging !');
 
             return $this->redirectToRoute('blog_index');
         }

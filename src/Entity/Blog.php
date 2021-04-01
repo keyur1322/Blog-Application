@@ -75,7 +75,6 @@ class Blog
         return $this;
     }
 
-
     public function getImage()
     {
         return $this->image;

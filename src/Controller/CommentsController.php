@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Comments;
 use App\Entity\Blog;
+use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,21 +26,17 @@ class CommentsController extends AbstractController
         ]);
     }
 
-
-
     /**
      * @Route("/all_user_comments", name="all_user_comments", methods={"GET"})
      */
     public function all_user_comments(CommentsRepository $commentsRepository): Response
     {
         $user = $this->getUser();
-        
+
         return $this->render('comments/allcomments.html.twig', [
-            'comments' => $commentsRepository->findBy(['user' => $user ]),
+            'comments' => $commentsRepository->findBy(['user' => $user]),
         ]);
     }
-
-
 
     /**
      * @Route("/comments_new/{id}", name="comments_new", methods={"POST"})
@@ -48,17 +44,17 @@ class CommentsController extends AbstractController
     public function new(Blog $blog, Request $request): Response
     {
         $comment = new Comments();
-        $comment -> setComment($request->get('message'));
+        $comment->setComment($request->get('message'));
         $comment->setUser($this->getUser());
         $comment->setBlog($blog);
-            
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($comment);
         $entityManager->flush();
 
-        $this->addFlash('success' , 'Comment is added successfully. Check more !');
+        $this->addFlash('success', 'Comment is added successfully. Check more !');
 
-        return $this->redirectToRoute('blog_index');     
+        return $this->redirectToRoute('blog_index');
     }
 
     /**
