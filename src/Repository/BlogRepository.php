@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Blog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\String\u;
 
 /**
  * @method Blog|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,6 +23,21 @@ class BlogRepository extends ServiceEntityRepository
     // /**
     //  * @return Blog[] Returns an array of Blog objects
     //  */
+
+    public function findByDate($date1)
+    {
+        $month = u($date1)->before('-');
+        $year = u($date1)->after('-');
+
+        return $qb = $this->createQueryBuilder('p')
+            ->andWhere('MONTH(p.publishedAt) = :month')
+            ->andWhere('YEAR(p.publishedAt) = :year')
+            ->setParameter('month' , $month)
+            ->setParameter('year' , $year)
+            ->getQuery()
+            ->getResult();
+    }
+
     /*
     public function findByExampleField($value)
     {

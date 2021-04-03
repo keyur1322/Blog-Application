@@ -53,10 +53,11 @@ class BlogController extends AbstractController
     public function filter_date(BlogRepository $blogRepository, Request $request): Response
     {
         $date1 = $request->get('datepicker');
+        $blogs = $blogRepository->findByDate($date1);
+
 
         return $this->render('blog/date.html.twig', [
-            // 'blogs' => $blogRepository->findBy(['publishedAt' => $date1 ]),
-            'date1' => $date1,
+            'blogs' => $blogs
         ]);
     }
 
