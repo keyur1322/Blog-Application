@@ -28,6 +28,8 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog_category/{variable}", name="blog_category", methods={"GET"})
+     *
+     * @param $variable
      */
     public function category($variable, BlogRepository $blogRepository): Response
     {
@@ -38,6 +40,8 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/blog_details/{blogid}", name="blog_details", methods={"GET"})
+     *
+     * @param $blogid
      */
     public function blog_details($blogid, BlogRepository $blogRepository, CommentsRepository $commentrepositorty): Response
     {
@@ -55,9 +59,8 @@ class BlogController extends AbstractController
         $date1 = $request->get('datepicker');
         $blogs = $blogRepository->findByDate($date1);
 
-
         return $this->render('blog/date.html.twig', [
-            'blogs' => $blogs
+            'blogs' => $blogs,
         ]);
     }
 
@@ -96,7 +99,7 @@ class BlogController extends AbstractController
 
             $this->addFlash('success', 'Blog is created. Enjoy your blogging !');
 
-            return $this->redirectToRoute('blog_index');
+            return $this->redirectToRoute('all_user_blog');
         }
 
         return $this->render('blog/new.html.twig', [

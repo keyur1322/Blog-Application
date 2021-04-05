@@ -32,8 +32,8 @@ class BlogRepository extends ServiceEntityRepository
         return $qb = $this->createQueryBuilder('p')
             ->andWhere('MONTH(p.publishedAt) = :month')
             ->andWhere('YEAR(p.publishedAt) = :year')
-            ->setParameter('month' , $month)
-            ->setParameter('year' , $year)
+            ->setParameter('month', $month)
+            ->setParameter('year', $year)
             ->getQuery()
             ->getResult();
     }
