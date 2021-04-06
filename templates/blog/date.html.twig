@@ -26,12 +26,12 @@
                 <p style="color:gray;">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
                 <p><strong>{{ blog.category }}</strong></p>
               </div><a href="{{ path('blog_details', {'blogid': blog.id}) }}">
-                <h3 class="h4">{{ blog.title }}</h3></a>
+                <h3 class="h4" id="testh4">{{ blog.title }}</h3></a>
               <p class="text-muted">{{ blog.shortdescription }}</p>
             </div>
           </div>
         {% else %}
-            <h4 class="nofound">No Blog Found.</h4>
+            <h4 class="nofound" id="testnofound">No Blog Found.</h4>
         {% endfor %}
         </div>
     </section>

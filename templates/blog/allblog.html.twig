@@ -2,18 +2,16 @@
 
 {% block title %}New Blog{% endblock %}
 {% block body %}
-{# 
-<h4>{{ userid.name }}</h4> #}
  <!-- Categorised blog -->
     <section class="latest-posts"> 
       <div class="container">
         <header> 
-          <h2>My Blogs</h2>
+          <h1>My Blogs</h1>
           <p class="text-big">Blogs are informal articles written for the purpose of showing thought leadership and expertise on a topic.</p>
         </header>
-        <div class="row">
+        <div class="row" id="testdiv">
         {% for blog in blogs %}
-          <div class="post col-md-4">
+          <div class="testpost post col-md-4">
             <div class="post-thumbnail"><a href="{{ path('blog_details', {'blogid': blog.id}) }}"><img src="{{ asset(blog.image) }}" alt="components-missing" class="img-fluid"></a></div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between mt-2">
