@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blog index{% endblock %}
+{% block title %}Blog details{% endblock %}
 
 {% block body %}
 {% for blog in blogs %}
+  <!-- blog -->
    <section class="py-5">
       <div class="container text-center">
         <p class="h6 mb-0 text-uppercase text-primary">{{ blog.category }}</p>
@@ -37,13 +38,13 @@
             </ul>
             {% if app.user %}
             <h3 class="h4 mb-4">Leave a comment</h3>
-            <form class="mb-5" action="{{ path('comments_new', {'id': blog.id} ) }}" method="POST">
+            <form name="comment" class="mb-5" action="{{ path('comments_new', {'id': blog.id} ) }}" method="POST">
               <div class="row">
                 <div class="form-group col-lg-12">
                   <textarea class="form-control" name="message" rows="5" placeholder="Leave your message" required></textarea>
                 </div>
                 <div class="form-group col-lg-12">
-                  <button class="btn btn-dark" type="submit">Submit</button>
+                  <button class="btn btn-dark" name="comment" type="submit">Submit</button>
                 </div>
               </div>
             </form>

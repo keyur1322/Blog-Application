@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Blog{% endblock %}
+{% block title %}Blog date{% endblock %}
 {% block body %}
-<form action="{{ path('blog_filter_date') }}" method="POST">
-    <div class="container" style="padding:30px;">
-        <input type="text" autocomplete="off" class="form-control" name="datepicker" id="datepicker" placeholder="Select month and year" style="max-width:300px; margin-bottom:30px;" required />
-        <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i>Search</button>
-    </div>
-</form> 
+    <form action="{{ path('blog_filter_date') }}" method="POST">
+        <div class="container" style="padding:30px;">
+            <input type="text" autocomplete="off" class="form-control" name="datepicker" id="datepicker" placeholder="Select month and year" style="max-width:300px; margin-bottom:30px;" required />
+            <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i>Search</button>
+        </div>
+    </form>
 
-
- <!-- Categorised blog -->
+    <!-- blog -->
     <section class="latest-posts"> 
       <div class="container">
         <header> 

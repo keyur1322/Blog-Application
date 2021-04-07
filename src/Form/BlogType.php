@@ -24,8 +24,8 @@ class BlogType extends AbstractType
                         'Medical' => 'medical',
                         'Food' => 'food',
                     ], ])
-            ->add('ShortDescription', TextareaType::class)
-            ->add('LongDescription', TextareaType::class)
+            ->add('shortdescription', TextareaType::class)
+            ->add('longdescription', TextareaType::class)
 
         ;
     }

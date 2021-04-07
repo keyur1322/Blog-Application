@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Blog{% endblock %}
+{% block title %}All User Blogs{% endblock %}
 {% block body %}
- <!-- Categorised blog -->
-    <section class="latest-posts"> 
+ <!-- blog -->
+    <section class="latest-posts">
       <div class="container">
         <header> 
           <h1>My Blogs</h1>
@@ -12,12 +12,12 @@
         <div class="row" id="testdiv">
         {% for blog in blogs %}
           <div class="testpost post col-md-4">
-            <div class="post-thumbnail"><a href="{{ path('blog_details', {'blogid': blog.id}) }}"><img src="{{ asset(blog.image) }}" alt="components-missing" class="img-fluid"></a></div>
+            <div class="post-thumbnail"><a href="{{ path('blog_details', {'blog': blog.id}) }}"><img src="{{ asset(blog.image) }}" alt="components-missing" class="img-fluid"></a></div>
             <div class="post-details">
               <div class="post-meta d-flex justify-content-between mt-2">
                 <p style="color:gray;">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>
                 <p><strong>{{ blog.category }}</strong></p>
-              </div><a href="{{ path('blog_details', {'blogid': blog.id}) }}">
+              </div><a href="{{ path('blog_details', {'blog': blog.id}) }}">
                 <h3 class="h4">{{ blog.title }}</h3></a>
               <p class="text-muted">{{ blog.shortdescription }}</p>
             </div>

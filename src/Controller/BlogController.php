@@ -26,33 +26,42 @@ class BlogController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/blog_category/{variable}", name="blog_category", methods={"GET"})
+     * @Route("/blog_category/{category}", name="blog_category", methods={"GET"})
      *
-     * @param $variable
+     * @param $category
+     * @param BlogRepository $blogRepository
+     * @return Response
      */
-    public function category($variable, BlogRepository $blogRepository): Response
+    public function category($category, BlogRepository $blogRepository): Response
     {
         return $this->render('blog/category.html.twig', [
-            'blogs' => $blogRepository->findBy(['category' => $variable]),
+            'blogs' => $blogRepository->findBy(['category' => $category]),
         ]);
     }
 
     /**
-     * @Route("/blog_details/{blogid}", name="blog_details", methods={"GET"})
+     * @Route("/blog_details/{blog}", name="blog_details", methods={"GET"})
      *
-     * @param $blogid
+     * @param Blog $blog
+     * @param BlogRepository $blogRepository
+     * @param CommentsRepository $commentrepositorty
+     * @return Response
      */
-    public function blog_details($blogid, BlogRepository $blogRepository, CommentsRepository $commentrepositorty): Response
+    public function blog_details(Blog $blog, BlogRepository $blogRepository, CommentsRepository $commentrepositorty): Response
     {
         return $this->render('blog/blogdetails.html.twig', [
-            'blogs' => $blogRepository->findBy(['id' => $blogid]),
-            'comments' => $commentrepositorty->findBy(['blog' => $blogid]),
+            'blogs' => $blogRepository->findBy(['id' => $blog]),
+            'comments' => $commentrepositorty->findBy(['blog' => $blog]),
         ]);
     }
 
     /**
      * @Route("/blog_filter_date", name="blog_filter_date", methods={"GET","POST"})
+     * @param BlogRepository $blogRepository
+     * @param Request $request
+     * @return Response
      */
     public function filter_date(BlogRepository $blogRepository, Request $request): Response
     {
@@ -64,8 +73,11 @@ class BlogController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/all_user_blog", name="all_user_blog", methods={"GET"})
+     * @param BlogRepository $blogRepository
+     * @return Response
      */
     public function all_user_blog(BlogRepository $blogRepository): Response
     {
@@ -75,6 +87,7 @@ class BlogController extends AbstractController
             'blogs' => $blogRepository->findBy(['user' => $user]),
         ]);
     }
+
 
     /**
      * @Route("/new", name="blog_new", methods={"GET","POST"})
@@ -86,7 +99,8 @@ class BlogController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $blog->getImage();
+
+            $file = $form->get('image')->getData();
 
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('upload_image_directory'), $filename);
@@ -108,47 +122,47 @@ class BlogController extends AbstractController
         ]);
     }
 
-//    /**
-//     * @Route("/{id}", name="blog_show", methods={"GET"})
-//     */
-//    public function show(Blog $blog): Response
-//    {
-//        return $this->render('blog/show.html.twig', [
-//            'blog' => $blog,
-//        ]);
-//    }
-//
-//    /**
-//     * @Route("/{id}/edit", name="blog_edit", methods={"GET","POST"})
-//     */
-//    public function edit(Request $request, Blog $blog): Response
-//    {
-//        $form = $this->createForm(BlogType::class, $blog);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $this->getDoctrine()->getManager()->flush();
-//
-//            return $this->redirectToRoute('blog_index');
-//        }
-//
-//        return $this->render('blog/edit.html.twig', [
-//            'blog' => $blog,
-//            'form' => $form->createView(),
-//        ]);
-//    }
-//
-//    /**
-//     * @Route("/{id}", name="blog_delete", methods={"POST"})
-//     */
-//    public function delete(Request $request, Blog $blog): Response
-//    {
-//        if ($this->isCsrfTokenValid('delete'.$blog->getId(), $request->request->get('_token'))) {
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->remove($blog);
-//            $entityManager->flush();
-//        }
-//
-//        return $this->redirectToRoute('blog_index');
-//    }
+    /**
+     * @Route("/{id}", name="blog_show", methods={"GET"})
+     */
+    public function show(Blog $blog): Response
+    {
+        return $this->render('blog/show.html.twig', [
+            'blog' => $blog,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/edit", name="blog_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Blog $blog): Response
+    {
+        $form = $this->createForm(BlogType::class, $blog);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('blog_index');
+        }
+
+        return $this->render('blog/edit.html.twig', [
+            'blog' => $blog,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="blog_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Blog $blog): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$blog->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($blog);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('blog_index');
+    }
 }

@@ -23,9 +23,14 @@ class Blog
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(type="string", length=400)
      */
-    private $image;
+    private $shortdescription;
+
+    /**
+     * @ORM\Column(type="string", length=600)
+     */
+    private $longdescription;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -33,14 +38,9 @@ class Blog
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="string", length=300)
      */
-    private $ShortDescription;
-
-    /**
-     * @ORM\Column(type="string", length=700)
-     */
-    private $LongDescription;
+    private $image;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,9 +53,10 @@ class Blog
      */
     private $user;
 
+
     public function __construct()
     {
-        $this->publishedAt = new \DateTime();
+        $this ->publishedAt = new \Datetime();
     }
 
     public function getId(): ?int
@@ -75,14 +76,26 @@ class Blog
         return $this;
     }
 
-    public function getImage()
+    public function getShortdescription(): ?string
     {
-        return $this->image;
+        return $this->shortdescription;
     }
 
-    public function setImage($image)
+    public function setShortdescription(string $shortdescription): self
     {
-        $this->image = $image;
+        $this->shortdescription = $shortdescription;
+
+        return $this;
+    }
+
+    public function getLongdescription(): ?string
+    {
+        return $this->longdescription;
+    }
+
+    public function setLongdescription(string $longdescription): self
+    {
+        $this->longdescription = $longdescription;
 
         return $this;
     }
@@ -99,26 +112,14 @@ class Blog
         return $this;
     }
 
-    public function getShortDescription(): ?string
+    public function getImage(): ?string
     {
-        return $this->ShortDescription;
+        return $this->image;
     }
 
-    public function setShortDescription(string $ShortDescription): self
+    public function setImage(string $image): self
     {
-        $this->ShortDescription = $ShortDescription;
-
-        return $this;
-    }
-
-    public function getLongDescription(): ?string
-    {
-        return $this->LongDescription;
-    }
-
-    public function setLongDescription(string $LongDescription): self
-    {
-        $this->LongDescription = $LongDescription;
+        $this->image = $image;
 
         return $this;
     }

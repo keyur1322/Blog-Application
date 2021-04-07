@@ -5,6 +5,9 @@ namespace App\Tests\Controller;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Class BlogControllerTest.
+ */
 class BlogControllerTest extends WebTestCase
 {
     /** index method.
@@ -29,7 +32,7 @@ class BlogControllerTest extends WebTestCase
 
         $userRepository = static::$container->get(UserRepository::class);
 
-        $testUser = $userRepository->findOneByEmail('john.doe@example.com');
+        $testUser = $userRepository->findOneByEmail('panchalkeyur1@gmail.com');
         $client->loginUser($testUser);
 
         $crawler = $client->request('POST', '/blog/new');
@@ -39,8 +42,8 @@ class BlogControllerTest extends WebTestCase
         $form = $buttonCrawlerNode->form([
             'blog[title]' => 'blog title',
             'blog[category]' => 'technology',
-            'blog[ShortDescription]' => 'blog short description',
-            'blog[LongDescription]' => 'blog long description',
+            'blog[shortdescription]' => 'blog short description',
+            'blog[longdescription]' => 'blog long description',
             'blog[image]' => 'D:\Symfony\Blog-application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',
         ]);
 
@@ -65,17 +68,6 @@ class BlogControllerTest extends WebTestCase
         $this->assertSelectorTextContains('#testh1', 'blog title');
     }
 
-//    /**
-//     * @return string[][]
-//     */
-//    public function provideUrls(): array
-//    {
-//        return [
-//          ['GET', '/blog/blog_filter_date'],
-//          ['POST', '/blog/blog_filter_date'],
-//        ];
-//    }
-
     /** filter_date method.
      *
      */
@@ -98,7 +90,7 @@ class BlogControllerTest extends WebTestCase
 
         $userRepository = static::$container->get(UserRepository::class);
 
-        $testUser = $userRepository->findOneByEmail('john.doe@example.com');
+        $testUser = $userRepository->findOneByEmail('panchalkeyur1@gmail.com');
         $client->loginUser($testUser);
 
         $crawler = $client->request('GET', '/blog/all_user_blog');
