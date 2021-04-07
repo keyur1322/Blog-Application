@@ -3,5 +3,7 @@
 {% block title %}New Blog{% endblock %}
 
 {% block body %}
-  {{ include('blog/_form.html.twig' , { 'button_label' : 'Add Blog' }) }}
+
+    {{ include('blog/_form.html.twig') }}
+
 {% endblock %}

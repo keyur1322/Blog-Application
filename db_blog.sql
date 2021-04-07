@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 07, 2021 at 01:27 PM
+-- Generation Time: Apr 07, 2021 at 07:20 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -32,21 +32,25 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `shortdescription` varchar(400) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `longdescription` varchar(600) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shortdescription` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `longdescription` varchar(700) COLLATE utf8mb4_unicode_ci NOT NULL,
   `category` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
   `published_at` datetime NOT NULL,
+  `image` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C0155143A76ED395` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `blog`
 --
 
-INSERT INTO `blog` (`id`, `user_id`, `title`, `shortdescription`, `longdescription`, `category`, `image`, `published_at`) VALUES
-(6, 3, 'zdsdsdsd', 'sdsdsd', 'sdsds', 'technology', 'img/5138ed02240e3c00f5ddb91a662f7bf8.jpg', '2021-04-07 13:20:24');
+INSERT INTO `blog` (`id`, `user_id`, `title`, `shortdescription`, `longdescription`, `category`, `published_at`, `image`) VALUES
+(1, 3, 'CSIRO', 'The Commonwealth Scientific and Industrial Research Organisation (CSIRO) is Australia’s national science agency. Established in 1916, the CSIRO has invented everything from modern-day WiFi, Aerogard and even extended-wear contact lenses.\\r\\n', 'The Commonwealth Scientific and Industrial Research Organisation (CSIRO) is Australia’s national science agency. Established in 1916, the CSIRO has invented everything from modern-day WiFi, Aerogard and even extended-wear contact lenses. With such an innovative impact on both a national and global scale, it’s no surprise its blog is one of the most interesting scientific reads on the Internet. Covering a vast number of topics including farmings.\\r\\n', 'science', '2021-04-07 18:37:18', 'img/f52f17084f25c5ab154242ff0d3a0215.jpg'),
+(2, 3, 'HARVARD HEALTH BLOG', 'This blog is part of Harvard Medical School’s family of publications and manages to answer questions most of us didn’t even think to ask.\\r\\n', 'This blog is part of Harvard Medical School’s family of publications and manages to answer questions most of us didn’t even think to ask. While topics are hard-hitting, don’t expect to find anything terribly obscure when scrolling through these posts.\\r\\n', 'medical', '2021-04-07 18:39:48', 'img/3703ac82c682e5cdca0ba35e171627c9.jpg'),
+(3, 3, 'Serious Eats', 'Well-tested interesting recipes, food science, techniques, equipment, and even food histories. Also has a highly-rated podcast hosted by founder Ed Levine.\\r\\n', 'Well-tested interesting recipes, food science, techniques, equipment, and even food histories. Also has a highly-rated podcast hosted by founder Ed Levine.Daily food magazine published by the founders of Apartment Therapy. Recipes, how-to, kitchen style, and shopping in an easy-to-navigate site.\\r\\n', 'food', '2021-03-31 10:43:30', 'img/59336ba51058217ff8ebec4409892767.jpg'),
+(4, 3, 'DR KARL KRUSZELNICKI', 'Featuring Kruszelnicki’s trademark humorous yet informative approach to science, this blog delves into some of the most complicated and frequently asked (but not so frequently answered in an accessible way) scientific questions.\\r\\n', 'Featuring Kruszelnicki’s trademark humorous yet informative approach to science, this blog delves into some of the most complicated and frequently asked (but not so frequently answered in an accessible way) scientific questions. From the beautiful act of vomiting to the overwhelming-grand ‘how many cells in a person?’, Kruszelnicki seeks to entertain and educate in a laidback and educational manner that young and old Australians alike will love.', 'technology', '2021-02-22 00:19:28', 'img/119bc3ac99b4e7322d25ea63610f107b123.jpg'),
+(5, 3, 'VACCINES DEVELOPMENT', 'As we interpret them today, vaccines are far from a novel concept. Vaccinae, a Latin word, is derived from vaccinus (of or relating to cows), based upon vacca, or cow. Vaccine arose to describe the cowpox material used for injections. The injection itself was called vaccination.\\r\\n', 'The New England Journal of Medicine suggested this could be a misnomer as the vaccine was likely derived from Horsepox1. Widely acclaimed as the mastermind for his discovery in 1796, Edward Jenner’s findings came 22 years after Benjamin Jesty inoculated his children in 1774 in Dorset, UK. There is earlier evidence dating back to the 1500s. As early as 200 BCE, the scabs of the infected were ground down and blown into the nostrils of people in China. \\r\\n', 'medical', '2021-04-07 18:42:06', 'img/38c38ef5412ad87c7a66ec439f631452.jpg');
 
 -- --------------------------------------------------------
 
@@ -71,7 +75,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 INSERT INTO `comments` (`id`, `user_id`, `blog_id`, `comment`, `published_at`) VALUES
-(2, 3, 6, 'gfsgfsgfsgfds', '2021-04-07 13:21:45');
+(1, 3, 2, 'Hey, I am very interested in learning medical blogs.\r\nKeep learning and leep shining.\r\n', '2021-04-07 18:58:44'),
+(2, 6, 5, 'Hey Author,\r\nMedical development is very necessary thingfor human. and vaccine development is the most important things now a days.', '2021-04-07 19:02:12');
 
 -- --------------------------------------------------------
 
@@ -92,7 +97,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20210407120420', '2021-04-07 12:04:30', 2015);
+('DoctrineMigrations\\Version20210407182231', '2021-04-07 18:22:54', 2451),
+('DoctrineMigrations\\Version20210407183135', '2021-04-07 18:32:02', 417);
 
 -- --------------------------------------------------------
 
@@ -109,15 +115,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `name`) VALUES
-(1, 'admin@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$R0N6eC9sNU5wOS44VFlJZw$1z9w5JJuMxBfqVCbXC4XVLaPiDJtIsFNxhcNEEdSflc', 'admin'),
-(3, 'keyur@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$QlFnLlk5ZFpQNE12TTVoRg$jESUzkKe2jDcCqBuChawy0UEAEQjtOAMLfex0B+hwd8', 'keyur');
+(3, 'admin@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$MENaQ3U0WFdLVXdYd0l2bA$bSU7AM/7hnTmYFCBSdllFkCu2bC7+O/wJT8VpKce0AQ', 'admin'),
+(4, 'keyur@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$eFFxSUN5RTE0VWtjaUJ5SA$NlneF466nzHWw3xZD7HimjhzMD++UEPQKuYl6fRJps0', 'keyur'),
+(5, 'dhanraj@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$Y2lOdVV0NUNwZEdaemlyVg$sFvAcno/MfgW93khGis72WSi0QH+Cr/FxBTB4E52HB4', 'dhanraj'),
+(6, 'akash@gmail.com', '[\"ROLE_USER\"]', '$argon2id$v=19$m=65536,t=4,p=1$TGpieEZDcnVUcGxxV1Z3Sw$kQpcyKzae9LRxJZF0NN6WRqaaDJON0zxsEKESNmPWtA', 'akash');
 
 --
 -- Constraints for dumped tables

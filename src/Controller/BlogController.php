@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BlogController extends AbstractController
 {
-    /**
+     /**
      * @Route("/", name="blog_index", methods={"GET"})
      */
     public function index(BlogRepository $blogRepository): Response
@@ -87,7 +87,6 @@ class BlogController extends AbstractController
             'blogs' => $blogRepository->findBy(['user' => $user]),
         ]);
     }
-
 
     /**
      * @Route("/new", name="blog_new", methods={"GET","POST"})

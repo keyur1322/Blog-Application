@@ -10,7 +10,7 @@
       </div>
       <div class="destinations-slider owl-carousel owl-theme nav-center-custom owl-padding">
         {% for blog in blogs %}
-            <a class="destination d-flex align-items-end bg-center bg-cover" href="{{ path('blog_details', {'blogid': blog.id}) }}" style="background: url('{{ asset(blog.image) }}');">
+            <a class="destination d-flex align-items-end bg-center bg-cover" href="{{ path('blog_details', {'blog': blog.id}) }}" style="background: url('{{ asset(blog.image) }}');">
             <div class="destination-inner w-100 text-center text-white index-forward has-transition">
                 <p class="small text-uppercase mb-0">{{ blog.category }}</p>
                 <p class="small text-uppercase mb-0">{{ blog.publishedAt ? blog.publishedAt|date('Y-m-d') : '' }}</p>

@@ -6,7 +6,6 @@ use App\Entity\Blog;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;
-
 /**
  * @method Blog|null find($id, $lockMode = null, $lockVersion = null)
  * @method Blog|null findOneBy(array $criteria, array $orderBy = null)
@@ -20,10 +19,7 @@ class BlogRepository extends ServiceEntityRepository
         parent::__construct($registry, Blog::class);
     }
 
-    // /**
-    //  * @return Blog[] Returns an array of Blog objects
-    //  */
-
+    
     public function findByDate($date1)
     {
         $month = u($date1)->before('-');
@@ -38,6 +34,9 @@ class BlogRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    // /**
+    //  * @return Blog[] Returns an array of Blog objects
+    //  */
     /*
     public function findByExampleField($value)
     {

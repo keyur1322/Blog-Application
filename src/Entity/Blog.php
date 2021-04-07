@@ -15,6 +15,7 @@ class Blog
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+
     private $id;
 
     /**
@@ -23,12 +24,12 @@ class Blog
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=400)
+     * @ORM\Column(type="string", length=500)
      */
     private $shortdescription;
 
     /**
-     * @ORM\Column(type="string", length=600)
+     * @ORM\Column(type="string", length=700)
      */
     private $longdescription;
 
@@ -36,11 +37,6 @@ class Blog
      * @ORM\Column(type="string", length=50)
      */
     private $category;
-
-    /**
-     * @ORM\Column(type="string", length=300)
-     */
-    private $image;
 
     /**
      * @ORM\Column(type="datetime")
@@ -53,12 +49,17 @@ class Blog
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $image;
 
+    
     public function __construct()
     {
         $this ->publishedAt = new \Datetime();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -112,18 +113,6 @@ class Blog
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getPublishedAt(): ?\DateTimeInterface
     {
         return $this->publishedAt;
@@ -144,6 +133,18 @@ class Blog
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

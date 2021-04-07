@@ -37,14 +37,15 @@ class BlogControllerTest extends WebTestCase
 
         $crawler = $client->request('POST', '/blog/new');
 
-        $buttonCrawlerNode = $crawler->selectButton('blog');
+        $buttonCrawlerNode = $crawler->selectButton('blogbtn');
 
         $form = $buttonCrawlerNode->form([
             'blog[title]' => 'blog title',
             'blog[category]' => 'technology',
             'blog[shortdescription]' => 'blog short description',
             'blog[longdescription]' => 'blog long description',
-            'blog[image]' => 'D:\Symfony\Blog-application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',
+        //  'blog[image]' => 'D:\Symfony\Blog-application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',  PATH FOR OFFICE PC
+            'blog[image]' => 'C:\Users\panch\Downloads\Github Repository\Blog-Application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',
         ]);
 
         $client->submit($form);

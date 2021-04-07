@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 07, 2021 at 01:27 PM
+-- Generation Time: Apr 07, 2021 at 07:20 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
   `published_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C0155143A76ED395` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `blog`
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
 
 INSERT INTO `blog` (`id`, `user_id`, `title`, `shortdescription`, `longdescription`, `category`, `image`, `published_at`) VALUES
 (1, 2, 'blog title', 'blog short description', 'blog long description', 'technology', 'img/85183c4f14f0c5f0d481f2ebcebe4564.jpg', '2021-04-07 12:54:37'),
-(12, 2, 'blog title', 'blog short description', 'blog long description', 'technology', 'img/892e041260dade18a5f570b08a048559.jpg', '2021-04-07 13:23:55');
+(15, 2, 'blog title', 'blog short description', 'blog long description', 'technology', 'img/d04215a599f3447944f29f915bd78fa5.jpg', '2021-04-07 19:17:35');
 
 -- --------------------------------------------------------
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `user`
