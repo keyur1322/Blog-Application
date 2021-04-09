@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Entity\Comments;
 use App\Form\CommentsType;
 use App\Repository\CommentsRepository;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class CommentsController extends AbstractController
 {
     /**
+     * @var LoggerInterface
+     */
+    private $appLogger;
+
+    public function __construct(LoggerInterface $appLogger)
+    {
+        $this->appLogger = $appLogger;
+    }
+
+
+    /**
      * @Route("/all_user_comments", name="all_user_comments", methods={"GET", "POST"})
+     * @param CommentsRepository $commentsRepository
+     * @return Response
      */
     public function all_user_comments(CommentsRepository $commentsRepository): Response
     {
+        $this->appLogger->info('Go to all comments of the user.');
+
         $user = $this->getUser();
 
         return $this->render('comments/allcomments.html.twig', [
@@ -30,9 +46,14 @@ class CommentsController extends AbstractController
 
     /**
      * @Route("/comments_new/{id}", name="comments_new", methods={"POST"})
+     * @param Blog $blog
+     * @param Request $request
+     * @return Response
      */
     public function new(Blog $blog, Request $request): Response
     {
+        $this->appLogger->info('Go to add new comments.');
+
         $comment = new Comments();
         $comment->setComment($request->get('message'));
         $comment->setUser($this->getUser());

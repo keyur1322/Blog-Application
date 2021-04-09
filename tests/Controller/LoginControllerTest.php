@@ -14,7 +14,7 @@ class LoginControllerTest extends WebTestCase
     /** login method.
      *
      */
-    public function testLogin()
+    public function testLogin(): void
     {
         $client = static::createClient();
         $userRepository = static::$container->get(UserRepository::class);

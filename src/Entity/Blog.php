@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BlogRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BlogRepository::class)
@@ -15,7 +16,6 @@ class Blog
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-
     private $id;
 
     /**
@@ -54,12 +54,11 @@ class Blog
      */
     private $image;
 
-    
     public function __construct()
     {
-        $this ->publishedAt = new \Datetime();
+        $this->publishedAt = new \Datetime();
     }
-    
+
     public function getId(): ?int
     {
         return $this->id;

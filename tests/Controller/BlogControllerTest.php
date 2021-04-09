@@ -13,7 +13,7 @@ class BlogControllerTest extends WebTestCase
     /** index method.
      *
      */
-    public function testShowAll()
+    public function testShowAll(): void
     {
         $client = static::createClient();
 
@@ -26,7 +26,7 @@ class BlogControllerTest extends WebTestCase
     /** new method.
      *
      */
-    public function testAddBlog()
+    public function testAddBlog(): void
     {
         $client = static::createClient();
 
@@ -44,8 +44,8 @@ class BlogControllerTest extends WebTestCase
             'blog[category]' => 'technology',
             'blog[shortdescription]' => 'blog short description',
             'blog[longdescription]' => 'blog long description',
-        //  'blog[image]' => 'D:\Symfony\Blog-application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',  PATH FOR OFFICE PC
-            'blog[image]' => 'C:\Users\panch\Downloads\Github Repository\Blog-Application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg',
+            'blog[image]' => 'D:\Symfony\Blog-application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg', // PATH FOR OFFICE PC
+        //  'blog[image]' => 'C:\Users\panch\Downloads\Github Repository\Blog-Application\public\img\91c9c0ddd91bf6ed2f3c07da295a00e3.jpg', // PATH FOR PERSONAL PC
         ]);
 
         $client->submit($form);
@@ -59,7 +59,7 @@ class BlogControllerTest extends WebTestCase
     /** blog_details method.
      *
      */
-    public function testShowBlogDetails()
+    public function testShowBlogDetails(): void
     {
         $client = static::createClient();
 
@@ -72,7 +72,7 @@ class BlogControllerTest extends WebTestCase
     /** filter_date method.
      *
      */
-    public function testBlogFilterDate()
+    public function testBlogFilterDate(): void
     {
         $client = static::createClient();
 
@@ -85,7 +85,7 @@ class BlogControllerTest extends WebTestCase
     /** all_user_blog method.
      *
      */
-    public function testAllUserBlog()
+    public function testAllUserBlog(): void
     {
         $client = static::createClient();
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,20 +23,31 @@ class RegistrationController extends AbstractController
     private $passwordEncoder;
 
     /**
-     * RegistrationController constructor.
+     * @var LoggerInterface
      */
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private $appLogger;
+
+    /**
+     * RegistrationController constructor.
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param LoggerInterface $appLogger
+     */
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, LoggerInterface $appLogger)
     {
         $this->passwordEncoder = $passwordEncoder;
+        $this->appLogger = $appLogger;
     }
 
     /**
      * @Route("/registration", name="registration", methods={"GET","POST"})
      *
+     * @param Request $request
      * @return RedirectResponse|Response
      */
     public function index(Request $request)
     {
+        $this->appLogger->info('Go to register new user.');
+
         $user = new User();
 
         $form = $this->createForm(UserType::class, $user);

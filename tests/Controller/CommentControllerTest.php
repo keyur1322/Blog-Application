@@ -13,7 +13,7 @@ class CommentControllerTest extends WebTestCase
     /** all_user_blog method.
      *
      */
-    public function testAllUserComments()
+    public function testAllUserComments(): void
     {
         $client = static::createClient();
 
@@ -31,7 +31,7 @@ class CommentControllerTest extends WebTestCase
     /** new method.
      *
      */
-    public function testAddComment()
+    public function testAddComment(): void
     {
         $client = static::createClient();
         $userRepository = static::$container->get(UserRepository::class);
